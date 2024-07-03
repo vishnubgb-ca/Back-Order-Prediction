@@ -1,0 +1,6 @@
+kaleido
+pandas
+plotly
+imblearn
+seaborn
+scipy
