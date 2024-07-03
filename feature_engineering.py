@@ -1,5 +1,5 @@
 from sklearn.preprocessing import LabelEncoder
-from data_preprocessing import data_preprocess
+# from data_preprocessing import data_preprocess
 from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE
