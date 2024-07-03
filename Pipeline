@@ -1,11 +1,9 @@
 pipeline{
     agent any
     environment{
-        airflow_instance_ip = credentials('airflow_instance_ip')
-        airflow_instance_private_key = credentials('airflow_key')
-        airflow_url = credentials('airflow_url')
-        airflow_username = credentials('airflow_username')
-        airflow_password = credentials('airflow_password')
+        airflow_url = "http://172.31.34.65:8080"
+        airflow_username = "airflow"
+        airflow_password = "airflow"
     }
     stages{
         
