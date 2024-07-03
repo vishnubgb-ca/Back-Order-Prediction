@@ -1,41 +1,65 @@
-import pandas as pd
-from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
+from data_preprocessing import data_preprocess
+from sklearn.preprocessing import LabelEncoder
+from sklearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 from scipy import stats
+import pandas as pd
 
-# Load data
-df = pd.read_csv('data.csv')
+def feature_engg():
+    
+    data = pd.read_csv('./Kaggle_Test_Dataset_v2.csv')
+    data = data.drop(columns=["sku","lead_time"],axis=1)
+    data = data.dropna(axis=0, how='any')
+    data = data.replace(to_replace = -99, value = np.nan)
+    data["perf_6_month_avg"] = data["perf_6_month_avg"].fillna(data["perf_6_month_avg"].median())
+    data["perf_12_month_avg"] = data["perf_12_month_avg"].fillna(data["perf_12_month_avg"].median())
+    print ("Missing values after removal of rows with empty values\n\n",data.isnull().any(),sep='')
+    print(data)
+    #Outlier removal
+    print("Old Shape: ", data.shape)
 
-# Mean Imputation
-#imputer = SimpleImputer(strategy='mean')
-#df['forecast_6_month'] = imputer.fit_transform(df['forecast_6_month'].values.reshape(-1, 1))
+    def remove_outliers(data,par):
+        print(par)
+        print(data.info())
+        z = np.abs(stats.zscore(data[par]))
+        a=np.where(z > 3)
+        for i in a[0]:
+            if i in data.index:
+                data.drop(index=i,inplace=True)
+            
+        #for i in b[0]:
+            #if i in data.index:
+                #data.drop(index=i,inplace=True)
 
-# Duplicate values
-#df = df.drop_duplicates(subset=['true'])
+    for j in ["national_inv",   "in_transit_qty",   "forecast_3_month", "forecast_6_month"  ,"forecast_9_month" ,"sales_1_month", "sales_3_month", "sales_6_month", "sales_9_month", "min_bank", "pieces_past_due", "perf_6_month_avg","perf_12_month_avg", "local_bo_qty"]: 
+        remove_outliers(data,j)
+    
+    le=LabelEncoder()
+    
+    data['potential_issue']=le.fit_transform(data['potential_issue'])
+    data['deck_risk']=le.fit_transform(data['deck_risk'])
+    data['oe_constraint']=le.fit_transform(data['oe_constraint'])
+    data['ppap_risk']=le.fit_transform(data['ppap_risk'])
+    data['stop_auto_buy']=le.fit_transform(data['stop_auto_buy'])
+    data['rev_stop']=le.fit_transform(data['rev_stop'])
+    data['went_on_backorder']=le.fit_transform(data['went_on_backorder'])
+    print(data.head())
 
-# Label encoding
-encoder = LabelEncoder()
-categorical_columns = ['potential_issue', 'deck_risk', 'oe_constraint', 'ppap_risk', 'stop_auto_buy', 'went_on_backorder', 'rev_stop']
-for column in categorical_columns:
-    df[column] = encoder.fit_transform(df[column])
+    X=data.drop(columns="went_on_backorder")
+    y=data['went_on_backorder']
+    target = le.fit_transform(np.ravel(y))
+    
+    sm = SMOTE()
+    X_upd, y_upd = sm.fit_resample(X, target.ravel())
 
-# Feature deletion
-df = df.drop(['sku', 'lead_time'], axis=1)
+    data_new=X_upd
+    data_new['went_on_backorder']=y_upd 
+    data_new.to_csv("cleaned_data.csv",index=False)
 
-# Balancing data
-#smote = SMOTE(sampling_strategy={'went_on_backorder': 1})
-#X, y = df.drop('went_on_backorder', axis=1), #df['went_on_backorder']
-#X, y = smote.fit_resample(X, y)
+    return data_new
 
-# Outliers
-numerical_columns = ['national_inv', 'in_transit_qty', 'forecast_3_month', 'forecast_6_month', 'forecast_9_month', 'sales_1_month', 'sales_3_month', 'sales_6_month', 'sales_9_month', 'min_bank', 'pieces_past_due', 'local_bo_qty']
-#for column in numerical_columns:
-    #df = df[df[column] <= stats.zscore(df[column])]
-
-# Save cleaned data
-df.to_csv('cleaned_data.csv', index=False)
-
-# Print top 5 rows
-print(df.head())
+feature_engg()
