@@ -2,6 +2,9 @@ import paramiko
 import os
 import requests
 deployment_url = os.environ["airflow_url"]
+print(deployment_url)
+print(os.environ['airflow_username'])
+print(os.environ['airflow_password'])
 dag_id = "Supply-Chain-Management"
 response = requests.post(
     url=f"{deployment_url}/api/v1/dags/{dag_id}/dagRuns",
