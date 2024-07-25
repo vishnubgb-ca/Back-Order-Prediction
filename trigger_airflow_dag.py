@@ -6,7 +6,7 @@ deployment_url = os.environ["airflow_url"]
 print(deployment_url)
 print(os.environ['airflow_username'])
 print(os.environ['airflow_password'])
-dag_id = "Back-Order-Prediction_VishnuB G Bharadwaja"
+dag_id = "Back-Order-Prediction_VishnuBGBharadwaja"
 # sleep(5)
 response = requests.post(
     url=f"{deployment_url}/api/v1/dags/{dag_id}/dagRuns",
