@@ -1,3 +1,4 @@
+os.system("pip install paramiko")
 import paramiko
 import os
 import requests
