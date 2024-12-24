@@ -1,5 +1,5 @@
 import os
-os.system("pip install paramiko")
+os.system("python3 -m pip install paramiko")
 import paramiko
 import requests
 from time import sleep
