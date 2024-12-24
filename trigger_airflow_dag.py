@@ -1,6 +1,6 @@
+import os
 os.system("pip install paramiko")
 import paramiko
-import os
 import requests
 from time import sleep
 deployment_url = os.environ["airflow_url"]
