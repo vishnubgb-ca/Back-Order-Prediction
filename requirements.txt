@@ -1,6 +1,4 @@
-kaleido
-pandas
-plotly
-imblearn
-seaborn
-scipy
+boto3==1.35.92
+pandas==2.2.3
+scikit_learn==1.6.0
+scipy==1.15.0

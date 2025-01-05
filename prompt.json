@@ -1,0 +1,5 @@
+{
+  "Data_Analysis": "Write a Python program that performs in-depth analysis on a Pandas DataFrame, includes generating descriptive statistics, printing top 5 and bottom 5 rows of data, and identifying the data type in each column.",
+  "Data_Preprocess": "Develop a Python script to preprocess a pandas dataframe, ensuring that it only includes rows with complete data (i.e., no missing values), and no duplicate entries.",
+  "Feature_Engineer": "Write a Python program that encodes categorical features with label encoding and removes outliers in numerical features using IQR method, while also ensuring data balance and removal of unwanted features in a pandas dataframe."
+}
