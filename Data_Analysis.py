@@ -1,29 +1,43 @@
 
 import pandas as pd
 
-def analyze_dataframe(df):
-    # Check if the input is a DataFrame
-    if not isinstance(df, pd.DataFrame):
-        raise ValueError("Input should be a pandas DataFrame")
+# Load the dataset
+def load_data(file_path):
+    try:
+        df = pd.read_csv(file_path)
+        return df
+    except Exception as e:
+        print(f"Error occurred while loading the data: {str(e)}")
+        return None
 
-    # Descriptive statistics
-    print("Descriptive Statistics:")
-    print(df.describe(include="all").transpose())
+# Display basic information about the dataset
+def display_info(df):
+    if df is not None:
+        print(df.info())
+    else:
+        print("Data is not loaded correctly.")
 
-    # Top 5 rows
-    print("\nTop 5 rows:")
-    print(df.head())
+# Check for missing values
+def check_missing_values(df):
+    if df is not None:
+        print(df.isnull().sum())
+    else:
+        print("Data is not loaded correctly.")
 
-    # Bottom 5 rows
-    print("\nBottom 5 rows:")
-    print(df.tail())
+# Print summary statistics
+def print_summary_statistics(df):
+    if df is not None:
+        print(df.describe())
+    else:
+        print("Data is not loaded correctly.")
 
-    # Data type in each column
-    print("\nData type in each column:")
-    print(df.dtypes)
+# Main function
+def main():
+    df = load_data("data.csv")
+    display_info(df)
+    check_missing_values(df)
+    print_summary_statistics(df)
 
-# Test the function
-df = pd.read_csv("data.csv")
-
-analyze_dataframe(df)
+if __name__ == "__main__":
+    main()
 
