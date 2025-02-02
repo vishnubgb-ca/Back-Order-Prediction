@@ -37,5 +37,5 @@ X, y = smote.fit_resample(X, y)
 # Save the cleaned dataset
 df_cleaned = pd.concat([X, y], axis=1)
 print(df_cleaned)
-df_cleaned.to_csv("cleaned_dataset.csv", index=False)
+df_cleaned.to_csv("cleaned_data.csv", index=False)
 
