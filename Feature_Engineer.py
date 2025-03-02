@@ -47,3 +47,4 @@ df = remove_outliers_IQR(df)
 df.to_csv("cleaned_data.csv", index=False)
 print("cleansed data:\n", df)
 
+

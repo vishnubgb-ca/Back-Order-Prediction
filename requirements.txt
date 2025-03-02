@@ -1,7 +1,4 @@
-boto3
-imbalanced_learn
-imblearn
-numpy
-pandas
-scikit_learn
-scipy
+boto3==1.37.4
+pandas==2.2.3
+scikit_learn==1.6.1
+scipy==1.15.2
