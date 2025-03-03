@@ -1,5 +1,4 @@
 {
   "Data_Analysis": "Write a Python script load the data, display basic information about the dataset, check for missing values, and print summary statistics",
-  "Data_Preprocess": "Handle missing and duplicate values in the dataframe",
-  "Feature_Engineer": "Write a Python script to preprocess a dataset by handling missing values, removing outliers using Z-score, encoding categorical variables with Label Encoding, and balancing the dataset using SMOTE. Finally, save the cleaned dataset"
+  "Feature_Engineering": "Write a Python script to preprocess a dataset by handling missing values, removing outliers using Z-score, encoding categorical variables with Label Encoding, and balancing the dataset using SMOTE. Finally, save the cleaned dataset"
 }
