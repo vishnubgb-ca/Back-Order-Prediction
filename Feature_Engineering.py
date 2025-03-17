@@ -5,7 +5,8 @@ from scipy import stats
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
-
+import os
+os.environ["MPLCONFIGDIR"] = "/tmp/matplotlib"
 # Load the dataset
 df = pd.read_csv("data.csv")
 
@@ -38,6 +39,7 @@ X, y = smote.fit_resample(X, y)
 df_cleaned = pd.concat([X, y], axis=1)
 print(df_cleaned)
 df_cleaned.to_csv("cleaned_data.csv", index=False)
+
 
 
 
