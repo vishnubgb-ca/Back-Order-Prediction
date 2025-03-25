@@ -1,4 +1,4 @@
-boto3==1.37.13
+boto3==1.37.19
 imblearn==0.0
 numpy==2.2.4
 pandas==2.2.3

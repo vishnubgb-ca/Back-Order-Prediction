@@ -1,4 +1,4 @@
 {
-  "Data_Analysis": "Write a Python script load the data, display basic information about the dataset, check for missing values, and print summary statistics",
+  "Data_Analysis": "Write a Python script that loads a dataset using pandas, and performs basic data analysis. The script should display basic information about the dataset, check for missing values, and print summary statistics",
   "Feature_Engineering": "Write a Python script to preprocess a dataset by handling missing values, removing outliers using Z-score, encoding categorical variables with Label Encoding, and balancing the dataset using SMOTE. Finally, save the cleaned dataset"
 }

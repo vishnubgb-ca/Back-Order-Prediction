@@ -2,47 +2,35 @@
 import pandas as pd
 
 # Load the dataset
-def load_data(file_path):
-    try:
-        df = pd.read_csv(file_path)
-        return df
-    except Exception as e:
-        print(f"Error occurred while loading the data: {str(e)}")
-        return None
+try:
+    df = pd.read_csv("data.csv")  # replace "your_dataset.csv" with your actual file path
+except Exception as e:
+    print("Error occurred while loading the dataset: ", e)
+    exit(1)
 
 # Display basic information about the dataset
-def display_info(df):
-    if df is not None:
-        print(df.info())
-    else:
-        print("Data is not loaded correctly.")
+try:
+    print("Basic information about the dataset:")
+    print(df.info())
+except Exception as e:
+    print("Error occurred while displaying basic information: ", e)
 
 # Check for missing values
-def check_missing_values(df):
-    if df is not None:
-        print(df.isnull().sum())
+try:
+    print("\nChecking for missing values:")
+    missing_values = df.isnull().sum()
+    if missing_values.sum() > 0:
+        print("Missing values found:")
+        print(missing_values)
     else:
-        print("Data is not loaded correctly.")
+        print("No missing values found.")
+except Exception as e:
+    print("Error occurred while checking for missing values: ", e)
 
 # Print summary statistics
-def print_summary_statistics(df):
-    if df is not None:
-        print(df.describe())
-    else:
-        print("Data is not loaded correctly.")
-
-# Main function
-def main():
-    df = load_data("data.csv")
-    display_info(df)
-    check_missing_values(df)
-    print_summary_statistics(df)
-
-if __name__ == "__main__":
-    main()
-
-
-
-
-
+try:
+    print("\nSummary statistics:")
+    print(df.describe())
+except Exception as e:
+    print("Error occurred while printing summary statistics: ", e)
 
